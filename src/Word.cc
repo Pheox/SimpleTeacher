@@ -1,20 +1,16 @@
-// Word.cc
-// Vladimir Brigant
-// posledna zmena: 22.6.2011
 
 #include "Word.h"
 #include "Dictionary.h"
 
 Word::Word(){}
 Word::~Word(){}
-	
+
 void Word::setSlovak(string s){this->slovak = s;}
 
 void Word::setEnglish(string s){this->english = s;}
 
 void Word::setDeutsch(string s){this->deutsch = s;}
-	
-	
+
 string Word::getSlovak(){return this->slovak;}
 
 string Word::getEnglish(){return this->english;}
@@ -47,6 +43,3 @@ void Word::setPhonetics(string s,int flag)
 	else if (flag == Dictionary::DEUTSCH)
 		this->deutsch_phonetics = s;
 }
-
-
-

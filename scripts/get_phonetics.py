@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-
+#!/usr/bin/python
 
 try:
 	import os
@@ -11,7 +10,6 @@ except ImportError:
 	print("missing module..")
 
 
-
 def get_phonetics(path):
 	infile = open(os.path.abspath(path), mode='r',encoding='ascii')
 	outfile = open(os.path.abspath(path)+"_phonetics",mode='w',encoding='utf8')
@@ -20,7 +18,7 @@ def get_phonetics(path):
 
 	reg_fon = re.compile(r'"type":"phonetic","text":"([^"]*)"')
 
-	
+
 	for line in infile:
 		try:
 			eng, slovak, fon = '','',''
@@ -39,7 +37,6 @@ def get_phonetics(path):
 				outfile.write(full_form)
 		except AttributeError:
 			print("Chyba! Zrejme chybne anglicke slovicko: "+eng)
-	
 
 	infile.close()
 	outfile.close()
@@ -49,6 +46,5 @@ def get_phonetics(path):
 # spustenie modulu ako skriptu
 # 1 parameter - cesta + nazov k slovniku
 if __name__ == '__main__':
-	get_phonetics(sys.argv[1])
-
-
+	path_to_dir = sys.argv[1]
+	get_phonetics(path_to_dir)
