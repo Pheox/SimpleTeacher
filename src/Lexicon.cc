@@ -9,12 +9,12 @@ using namespace std;
 
 
 Lexicon::Lexicon() {
-  	this->words = new vector<Word *>();
+    this->words = new vector<Word *>();
 }
 
 Lexicon::~Lexicon() {
-  for (int i=0;i < this->words->size();i++)
-	delete this->words->at(i);
+  for (unsigned int i=0;i < this->words->size();i++)
+  delete this->words->at(i);
   delete this->words;
 }
 
@@ -26,58 +26,47 @@ Word *Lexicon::getWord(int position) {
   return this->words->at(position);
 }
 
-void Lexicon::removeWord(Word *w){}
-
-
-
-void Lexicon::parseFile(string path)
-{
+void Lexicon::parseFile(string path) {
   string line;
 
   ifstream myfile(path.c_str());
-  if (myfile.is_open())
-  {
-    while ( myfile.good() )
-    {
+  if (myfile.is_open()) {
+    while (myfile.good()) {
       getline (myfile,line);
 
+      char *pch;
+      pch = strtok((char *)line.c_str(),"-");
+      int a = 0;
+      string eng,slov,fon;
 
-	  char *pch;
-	  pch = strtok((char *)line.c_str(),"-");
-	  int a = 0;
-	  string eng,slov,fon;
+    while (pch != NULL) {
+      printf ("%s\n",pch);
 
+      if (!a) {
+        eng = string(pch);
+      } else if (a == 1) {
+        slov = string(pch);
+      } else if (a == 2) {
+        fon = string(pch);
+      }
 
-	  while (pch != NULL)
-	  {
-		printf ("%s\n",pch);
-
-		if (!a) {
-		  eng = string(pch);
-		}
-		else if (a == 1)
-		  slov = string(pch);
-		else if (a == 2)
-		  fon = string(pch);
-
-		pch = strtok (NULL, "-");
-		a++;
-	  }
-
-	  if (a)
-	  {
-		Word *w = new Word();
-		w->setEnglish(eng);
-		w->setSlovak(slov);
-		w->setPhonetics(fon,Dictionary::ENGLISH);
-		this->words->push_back(w);
-	  }
+      pch = strtok (NULL, "-");
+      a++;
     }
-    myfile.close();
+
+    if (a) {
+      Word *w = new Word();
+      w->setEnglish(eng);
+      w->setSlovak(slov);
+      w->setPhonetics(fon,Dictionary::ENGLISH);
+      this->words->push_back(w);
+    }
   }
+  myfile.close();
+}
   else cout << "Unable to open file";
 }
 
 vector<Word *> *Lexicon::getWords() {
-	return this->words;
+  return this->words;
 }

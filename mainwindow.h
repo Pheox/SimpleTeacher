@@ -17,30 +17,30 @@
 using namespace std;
 
 class MainWindow : public QMainWindow {
-    Q_OBJECT
+  Q_OBJECT
 
-    public:
+  public:
 
-    private:
-        Ui::MainWindow ui;
-        Dictionary *dict;
+  private:
+      Ui::MainWindow ui;
+      Dictionary *dict;
 
-    public:
-        MainWindow ( QWidget * parent = 0, Qt::WindowFlags f = 0 );
-        ~MainWindow();
-        void setDictionary(Dictionary *d);
-        Dictionary *getDictionary();
+  public:
+      MainWindow ( QWidget * parent = 0, Qt::WindowFlags f = 0 );
+      ~MainWindow();
+      void setDictionary(Dictionary *d);
+      Dictionary *getDictionary();
 
-    public slots:
-      void fromComboBox_activated(int);
-      void toComboBox_activated(int);
-      void setLexiconButton_clicked();
-      void startButton_clicked();
-      void iknowButton_clicked();
-      void dunnoButton_clicked();
-      void showTranslatedButton_clicked();
+  public slots:
+    void fromComboBox_activated(int);
+    void toComboBox_activated(int);
+    void setLexiconButton_clicked();
+    void startButton_clicked();
+    void iknowButton_clicked();
+    void dunnoButton_clicked();
+    void showTranslatedButton_clicked();
 
-    signals:
+  signals:
 };
 
 #endif // MAIN_WINDOW__H

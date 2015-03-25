@@ -11,39 +11,37 @@ using namespace std;
 
 class Word {
   private:
-	string slovak;
-	string english;
-	string deutsch;
-	string eng_phonetics;
-	string deutsch_phonetics;
+  string slovak;
+  string english;
+  string deutsch;
+  string eng_phonetics;
+  string deutsch_phonetics;
 
   public:
-	Word();
-	~Word();
+  Word();
+  ~Word();
 
-	void setSlovak(string s);
-	void setEnglish(string s);
-	void setDeutsch(string s);
+  void setSlovak(string s);
+  void setEnglish(string s);
+  void setDeutsch(string s);
 
-	string getSlovak();
-	string getEnglish();
-	string getDeutsch();
+  string getSlovak();
+  string getEnglish();
+  string getDeutsch();
 
-	string getForm(int flag);
+  string getForm(int flag);
 
-	void setPhonetics(string s,int flag);
-	string getPhonetics(int flag);
+  void setPhonetics(string s,int flag);
+  string getPhonetics(int flag);
 
-	// pretazenie operatoru <<
-	friend ostream& operator<<(ostream& out, Word *w) // output
-	{
-		out << "Word:" << endl;
-		out << "Slovak: " << w->getSlovak() << endl;
-		out << "English:" << w->getEnglish() << endl;
-		out << "Deutsch:" << w->getDeutsch() << endl;
+  friend ostream& operator<<(ostream& out, Word *w) {
+    out << "Word:" << endl;
+    out << "Slovak: " << w->getSlovak() << endl;
+    out << "English:" << w->getEnglish() << endl;
+    out << "Deutsch:" << w->getDeutsch() << endl;
 
-		return out;
-	}
+    return out;
+  }
 };
 
 #endif

@@ -16,22 +16,17 @@ Dictionary::Dictionary() {
 
 Dictionary::~Dictionary() {
   for (unsigned int i=0; i < this->lexicons->size();i++)
-	delete this->lexicons->at(i);
+    delete this->lexicons->at(i);
   delete this->lexicons;
 }
 
 
 void Dictionary::addLexicon(Lexicon *lex) {
-	this->lexicons->push_back(lex);
+  this->lexicons->push_back(lex);
 }
 
-
-Lexicon *Dictionary::getLexicon(int position) {}
-
-void Dictionary::removeLexicon(Lexicon *lex) {}
-
 int Dictionary::getActual() {
-	return this->actual;
+  return this->actual;
 }
 
 void Dictionary::setActual(int actual) {
@@ -39,61 +34,88 @@ void Dictionary::setActual(int actual) {
 }
 
 
-void Dictionary::setFrom(int f){this->from = f;}
-void Dictionary::setTo(int t){this->to = t;}
-int Dictionary::getFrom(){return this->from;}
-int Dictionary::getTo(){return this->to;}
+void Dictionary::setFrom(int f) {
+  this->from = f;
+}
+
+void Dictionary::setTo(int t) {
+  this->to = t;
+}
+
+int Dictionary::getFrom() {
+  return this->from;
+}
+
+int Dictionary::getTo() {
+  return this->to;
+}
 
 
 Word *Dictionary::getRandomWord() {
-	///toto vyoptimalizovat
-	int all = 0;
-	for (int i=0;i < this->lexicons->size();i++)
-		all += this->lexicons->at(i)->getWords()->size();
+  int all = 0;
+  for (unsigned int i=0;i < this->lexicons->size();i++)
+    all += this->lexicons->at(i)->getWords()->size();
 
-	cout << "pocet vsetkych slov: " << all << endl;
+  cout << "pocet vsetkych slov: " << all << endl;
 
-	// vyber jedneho hesla
-	srand(time(NULL));
-	int random = rand() % all + 1;
+  srand(time(NULL));
+  int random = rand() % all + 1;
 
-	cout << random << endl;  //number between 1 and 10
+  cout << random << endl;
 
-	int tmp_counter = 0;
-	for (int i=0;i < this->lexicons->size();i++)
-	{
-		tmp_counter += this->lexicons->at(i)->getWords()->size();
-		if (tmp_counter < random)
-		{
-			//random -= tmp_counter;
-			continue;
-		}
-		else
-		{
-			cout << "im there " << endl;
- 			return this->lexicons->at(i)->getWords()->at(tmp_counter-random);
-		}
-	}
+  int tmp_counter = 0;
+  for (unsigned int i=0;i < this->lexicons->size();i++) {
+    tmp_counter += this->lexicons->at(i)->getWords()->size();
+    if (tmp_counter < random) {
+      continue;
+    } else {
+      cout << "im there " << endl;
+      return this->lexicons->at(i)->getWords()->at(tmp_counter-random);
+    }
+  }
+  return NULL;
 }
 
-
 void Dictionary::setActualWord(Word *w) {
-	this->actualWord = w;
+  this->actualWord = w;
 }
 
 Word *Dictionary::getActualWord() {
-	return this->actualWord;
+  return this->actualWord;
 }
 
-void Dictionary::setOk(int ok){this->ok = ok;}
-void Dictionary::setBad(int bad){this->bad = bad;}
-void Dictionary::setHowMany(int how){this->howMany = how;}
+void Dictionary::setOk(int ok) {
+  this->ok = ok;
+}
 
-int Dictionary::getOk(){return this->ok;}
-int Dictionary::getBad(){return this->bad;}
-int Dictionary::getHowMany(){return this->howMany;}
+void Dictionary::setBad(int bad) {
+  this->bad = bad;
+}
 
-void Dictionary::incOk(){this->ok = this->ok + 1; }
-void Dictionary::incBad(){this->bad = this->bad + 1;}
+void Dictionary::setHowMany(int how) {
+  this->howMany = how;
+}
 
-void Dictionary::decHowMany(){this->howMany -= 1;}
+int Dictionary::getOk() {
+  return this->ok;
+}
+
+int Dictionary::getBad() {
+  return this->bad;
+}
+
+int Dictionary::getHowMany() {
+  return this->howMany;
+}
+
+void Dictionary::incOk() {
+  this->ok = this->ok + 1;
+}
+
+void Dictionary::incBad() {
+  this->bad = this->bad + 1;
+}
+
+void Dictionary::decHowMany() {
+  this->howMany -= 1;
+}
