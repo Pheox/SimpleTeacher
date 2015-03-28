@@ -1,8 +1,10 @@
 # compiled files
 *.pyc
 *.o
+SimpleTeacher
 
 # directories
 build/
 nbproject/
 
+Makefile
